@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<title>ติดตั้ง KinRaiDee</title>
+<style>
+body{font-family:Tahoma,sans-serif;max-width:600px;margin:30px auto;padding:0 20px;line-height:1.8;}
+code{background:#f4f4f4;padding:2px 6px;border-radius:4px;}
+pre{background:#f4f4f4;padding:15px;border-radius:8px;overflow-x:auto;}
+.step{margin:20px 0;padding:15px;border-left:4px solid #ea580c;background:#fff9f5;}
+</style>
+</head>
+<body>
+<h1>📋 คู่มือติดตั้ง KinRaiDee</h1>
+
+<div class="step">
+<h3>ขั้นตอนที่ 1: สร้างฐานข้อมูล</h3>
+<p>เข้าไปที่ phpMyAdmin ของ Angsila → สร้างฐานข้อมูล → นำเข้าไฟล์ <code>database.sql</code></p>
+</div>
+
+<div class="step">
+<h3>ขั้นตอนที่ 2: แก้ไขไฟล์ config.php</h3>
+<p>เปลี่ยน 3 ค่าให้ตรงกับระบบของคุณ:</p>
+<pre>$dbname = 'ชื่อฐานข้อมูล';
+$username = 'ชื่อผู้ใช้';
+$password = 'รหัสผ่าน';</pre>
+</div>
+
+<div class="step">
+<h3>ขั้นตอนที่ 3: อัปโหลดไฟล์ผ่าน FileZilla</h3>
+<p>อัปโหลดไฟล์ทั้งหมดไปที่:</p>
+<pre>public_html/kinraidee/</pre>
+</div>
+
+<div class="step">
+<h3>ขั้นตอนที่ 4: เปิดใช้งาน</h3>
+<p>เปิดลิงก์:</p>
+<pre>https://angsila.cs.buu.ac.th/~ชื่อผู้ใช้/kinraidee/</pre>
+</div>
+
+<p style="margin-top:30px;padding:15px;background:#e6ffec;border-radius:8px;">✅ เสร็จเรียบร้อย! ถ้ามีปัญหา ดูข้อความแจ้งเตือนและแก้ไขตามคำแนะนำ</p>
+</body>
+</html>
