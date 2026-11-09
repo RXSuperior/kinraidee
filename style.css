@@ -1,0 +1,81 @@
+/* ========== KinRaiDee Stylesheet ========== */
+:root{
+  --bg:#FFF9F5;
+  --card:#ffffff;
+  --text:#4A3F3F;
+  --muted:#A0888E;
+  --accent:#D86C82;
+  --accent-deep:#B84A62;
+  --accent-soft:#F8E2E7;
+  --border:#F3E4E8;
+  --green:#2E7D32;
+  --orange:#E65100;
+  --gray:#9E9E9E;
+}
+
+.reveal{opacity:0;transform:translateY(16px);animation:fu .55s ease forwards}
+@keyframes fu{to{opacity:1;transform:translateY(0)}}
+
+/* แท็บนำทาง */
+.tab-btn{transition:all .2s ease;cursor:pointer;border:none;background:transparent;padding:.5rem .9rem;border-radius:999px;font-size:.82rem;color:var(--muted);font-family:inherit}
+.tab-btn.active{background:var(--accent-soft);color:var(--accent-deep);font-weight:700}
+
+/* ฟอร์ม */
+.fsel{width:100%;padding:.7rem .9rem;border:1px solid var(--border);border-radius:12px;background:#FFFAF8;font-family:inherit;font-size:.9rem;color:var(--text);outline:none}
+.fsel:focus{border-color:var(--accent)}
+.finput{width:100%;padding:.65rem .9rem;border:1px solid var(--border);border-radius:12px;background:#FFFAF8;font-family:inherit;font-size:.9rem;color:var(--text);outline:none}
+.finput:focus{border-color:var(--accent)}
+
+/* ปุ่มกรองหมวดหมู่ (chips) */
+.chip{padding:.45rem 1rem;border-radius:999px;border:1px solid var(--border);background:#fff;color:var(--muted);font-size:.82rem;cursor:pointer;transition:all .2s;white-space:nowrap;font-family:inherit}
+.chip.active{background:var(--accent);color:#fff;border-color:var(--accent);font-weight:600}
+
+/* ปุ่มเลือกวันหยุด */
+.day-chip{padding:.4rem .8rem;border-radius:999px;border:1px solid var(--border);background:#fff;color:var(--muted);font-size:.8rem;cursor:pointer;transition:all .2s;user-select:none;font-family:inherit}
+.day-chip.active{background:var(--accent);color:#fff;border-color:var(--accent);font-weight:600}
+
+/* การ์ดร้านอาหาร */
+.rcard{background:#fff;border:1px solid var(--border);border-radius:16px;padding:1rem;transition:all .2s}
+.rcard.closed{opacity:.45;filter:grayscale(.4)}
+
+/* สีระยะทาง */
+.dist-pill{font-size:.72rem;font-weight:700;padding:.15rem .55rem;border-radius:6px;color:#fff;display:inline-block}
+.dist-near{background:var(--green)}
+.dist-mid{background:var(--orange)}
+.dist-far{background:var(--gray)}
+
+/* สถานะเปิด/ปิด */
+.status-open{display:inline-block;background:#D4EDDA;color:var(--green);padding:.15rem .6rem;border-radius:6px;font-size:.72rem;font-weight:700}
+.status-closed{display:inline-block;background:#F5D5D5;color:#B71C1C;padding:.15rem .6rem;border-radius:6px;font-size:.72rem;font-weight:700}
+
+/* แท็กข้อมูล */
+.meta-tag{background:var(--accent-soft);color:var(--accent-deep);padding:.25rem .7rem;border-radius:999px;font-size:.75rem;font-weight:600;display:inline-block}
+
+/* ปุ่มหลัก */
+.btn-primary{width:100%;padding:.95rem;border:none;border-radius:14px;background:linear-gradient(135deg,#E88B9C,#D86C82);color:#fff;font-family:inherit;font-size:1.05rem;font-weight:700;cursor:pointer;transition:transform .2s,box-shadow .2s}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(216,108,130,.35)}
+.btn-ghost{padding:.55rem 1.1rem;border:1px solid var(--border);border-radius:10px;background:#fff;color:var(--text);font-family:inherit;font-size:.85rem;cursor:pointer;transition:all .2s}
+.btn-ghost:hover{border-color:var(--accent);color:var(--accent-deep)}
+
+/* กราฟโหวต */
+.vote-bar{height:22px;border-radius:6px;background:linear-gradient(90deg,#E88B9C,#D86C82);transition:width .5s ease;min-width:4px}
+
+/* แจ้งเตือน */
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:24px;background:#333;color:#fff;padding:.7rem 1.4rem;border-radius:999px;font-size:.85rem;z-index:999;opacity:0;transition:opacity .3s;pointer-events:none;font-family:inherit}
+.toast.show{opacity:1}
+
+/* ประวัติห้องโหวต */
+.hist-item{display:flex;justify-content:space-between;align-items:center;padding:.55rem .8rem;border:1px solid var(--border);border-radius:10px;background:#FFFAF8}
+
+/* ลิงค์ Google Maps */
+.map-link{display:inline-block;margin-top:.6rem;background:var(--accent-soft);color:var(--accent-deep);padding:.45rem 1.1rem;border-radius:999px;font-size:.82rem;font-weight:600;text-decoration:none;transition:all .2s}
+.map-link:hover{background:var(--accent);color:#fff}
+.map-link-sm{font-size:.75rem;color:var(--accent-deep);font-weight:600;text-decoration:underline;display:inline-block;margin-top:.35rem}
+
+/* ข้อมูลติดต่อ */
+.contact-row{display:flex;gap:.8rem;flex-wrap:wrap;margin-top:.35rem}
+.contact-link{font-size:.75rem;color:var(--text);text-decoration:none;display:inline-flex;align-items:center;gap:.3rem}
+.contact-link:hover{color:var(--accent)}
+
+/* ซ่อนแผง */
+.tab-panel.hidden{display:none}

@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KinRaiDee - กินไรดี</title>
+<!-- ฟอนต์ -->
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Noto+Sans+Thai:wght@400;500;600;700&family=Prompt:wght@500;600;700&display=swap" rel="stylesheet">
+<!-- Tailwind CSS (ใช้สำหรับ grid / flex เบื้องต้น ส่วนสไตล์หลักอยู่ใน style.css) -->
+<script src="https://cdn.tailwindcss.com"></script>
+<!-- สไตล์หลัก (แยกไฟล์) -->
+<link rel="stylesheet" href="style.css?v=20261109c">
+<!-- สไตล์หน้าแรกและแถบเมนูใหม่ -->
+<link rel="stylesheet" href="home.css?v=20261109c">
+<link rel="stylesheet" href="dark.css?v=20261109c">
+<meta name="theme-color" content="#FFF9F5">
+<script>try{if(localStorage.getItem("krd_theme")==="dark")document.documentElement.setAttribute("data-theme","dark")}catch(e){}</script>
+</head>
+<body style="font-family:'Quicksand','Noto Sans Thai',sans-serif;background:var(--bg);color:var(--text);margin:0;padding:0;min-height:100vh;">
+
+<!-- ========== แถบเมนูด้านบน ========== -->
+<header class="site-nav-wrap">
+  <nav class="site-nav" aria-label="เมนูหลัก">
+    <a class="brand" href="#" data-goto="home" aria-label="KINRAIDEE หน้าแรก">
+      <svg class="brand-icon" viewBox="0 0 32 32" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4v6a4 4 0 0 0 8 0V4M9 4v24"/><ellipse cx="23" cy="10" rx="3.8" ry="6"/><path d="M23 16v12"/></svg>
+      <span>KINRAIDEE</span>
+    </a>
+
+    <div class="nav-links" role="tablist">
+      <button class="tab-btn nav-link active" data-tab="home">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l9-8 9 8v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z" fill="currentColor"/></svg>หน้าแรก
+      </button>
+      <button class="tab-btn nav-link" data-tab="random">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="8.5" cy="8.5" r="1.4" fill="currentColor"/><circle cx="15.5" cy="8.5" r="1.4" fill="currentColor"/><circle cx="12" cy="12" r="1.4" fill="currentColor"/><circle cx="8.5" cy="15.5" r="1.4" fill="currentColor"/><circle cx="15.5" cy="15.5" r="1.4" fill="currentColor"/></svg>สุ่มร้านอาหาร
+      </button>
+      <button class="tab-btn nav-link" data-tab="vote">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.2" fill="currentColor"/><circle cx="17" cy="9" r="2.6" fill="currentColor"/><path d="M2.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6zM15.5 14.3c.5-.2 1-.3 1.5-.3 2.8 0 4.5 1.9 4.5 4.5V20h-4.2c0-2.2-.7-4.1-2.3-5.7z" fill="currentColor"/></svg>โหวตกับเพื่อน
+      </button>
+      <button class="tab-btn nav-link" data-tab="browse" data-near="1">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s7-6.4 7-12a7 7 0 0 0-14 0c0 5.6 7 12 7 12z" fill="currentColor"/><circle cx="12" cy="10" r="2.6" fill="#fff"/></svg>ร้านใกล้ฉัน
+      </button>
+      <button class="tab-btn nav-link is-hidden" id="navAdmin" style="display:none" data-tab="admin">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l8 3v6c0 5-3.4 9.3-8 11-4.6-1.7-8-6-8-11V5z" fill="currentColor"/><path d="M8.5 12l2.4 2.4L15.5 9.8" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>แอดมิน
+      </button>
+    </div>
+
+    <div class="nav-actions">
+      <button class="nav-btn icon" id="themeToggle" type="button" aria-label="สลับโหมดมืด/สว่าง" aria-pressed="false" title="โหมดมืด (ถนอมสายตา)">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path class="t-moon" d="M20 14.5A8 8 0 0 1 9.5 4 8 8 0 1 0 20 14.5z" fill="currentColor"/><g class="t-sun" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4" fill="currentColor"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M5.3 18.7l1.4-1.4M17.3 6.7l1.4-1.4"/></g></svg>
+      </button>
+      <button class="nav-btn icon" id="soundToggle" type="button" aria-label="เปิด/ปิดเสียง" aria-pressed="true" title="เสียงตอนกด">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path class="s-on" d="M4 9v6h4l5 4V5L8 9zM16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12" fill="currentColor" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path class="s-off" d="M4 9v6h4l5 4V5L8 9zM17 9l5 6M22 9l-5 6" fill="currentColor" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      </button>
+      <button class="nav-btn ghost" id="navLogin" data-goto="login">เข้าสู่ระบบ</button>
+      <span class="user-chip is-hidden" id="navUser" style="display:none">
+        <span class="user-avatar" id="navAvatar" aria-hidden="true"></span>
+        <span class="user-name" id="navUserName"></span>
+        <span class="role-badge is-hidden" id="navRole" style="display:none">แอดมิน</span>
+        <button class="nav-btn ghost small" id="navLogout" type="button">ออกจากระบบ</button>
+      </span>
+      <button class="nav-btn solid" data-goto="add">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></svg><span class="lbl">เพิ่มร้าน</span>
+      </button>
+    </div>
+  </nav>
+</header>
+
+<!-- ========== หน้าแรก ========== -->
+<section id="tab-home" class="tab-panel home">
+
+  <!-- ส่วนหัว (Hero) -->
+  <div class="hero">
+    <div class="hero-text reveal">
+      <h1 class="hero-title">วันนี้กิน<span class="hl">อะไร</span>ดีนะ<span class="q">?</span></h1>
+      <p class="hero-sub">หมดปัญหาเถียงกันว่าจะกินอะไร<br>ให้ KINRAIDEE ช่วยหาร้านอร่อย ๆ ที่ใช่สำหรับคุณ</p>
+      <div class="hero-cta">
+        <button class="cta-main" data-goto="random">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="8.5" cy="8.5" r="1.5" fill="currentColor"/><circle cx="15.5" cy="15.5" r="1.5" fill="currentColor"/><circle cx="12" cy="12" r="1.5" fill="currentColor"/></svg>
+          สุ่มร้านเลย!
+          <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <button class="cta-ghost" data-goto="browse">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M15.5 15.5L21 21" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+          ค้นหาร้านอาหาร
+        </button>
+      </div>
+    </div>
+    <div class="hero-img reveal">
+      <img src="img/hero.jpg" alt="ราเมน ซูชิ ชานมไข่มุก และชาบู" width="798" height="374">
+    </div>
+  </div>
+
+  <!-- การ์ดฟีเจอร์ -->
+  <div class="feature-grid">
+    <button class="fcard pink reveal" data-goto="random">
+      <span class="ficon">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="4" fill="#fff" stroke="currentColor" stroke-width="1.6"/><circle cx="8.5" cy="8.5" r="1.5" fill="currentColor"/><circle cx="15.5" cy="8.5" r="1.5" fill="currentColor"/><circle cx="12" cy="12" r="1.5" fill="currentColor"/><circle cx="8.5" cy="15.5" r="1.5" fill="currentColor"/><circle cx="15.5" cy="15.5" r="1.5" fill="currentColor"/></svg>
+      </span>
+      <span class="ftext"><b>สุ่มร้านอาหาร</b><small>ให้ระบบช่วยเลือก<br>ไม่ต้องคิดเอง</small></span>
+      <svg class="fchev" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <button class="fcard blue reveal" data-goto="vote">
+      <span class="ficon">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.4" fill="currentColor"/><circle cx="17" cy="9" r="2.8" fill="currentColor" opacity=".7"/><path d="M2.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6zM15.5 14.3c.5-.2 1-.3 1.5-.3 2.8 0 4.5 1.9 4.5 4.5V20h-4.2c0-2.2-.7-4.1-2.3-5.7z" fill="currentColor"/></svg>
+      </span>
+      <span class="ftext"><b>โหวตกับเพื่อน</b><small>ช่วยกันเลือกร้าน<br>ที่ทุกคนชอบ</small></span>
+      <svg class="fchev" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <button class="fcard green reveal" data-goto="browse" data-near="1">
+      <span class="ficon">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s7-6.4 7-12a7 7 0 0 0-14 0c0 5.6 7 12 7 12z" fill="currentColor"/><circle cx="12" cy="10" r="2.7" fill="#fff"/></svg>
+      </span>
+      <span class="ftext"><b>ร้านใกล้ฉัน</b><small>ค้นหาร้านอาหาร<br>ตามตำแหน่ง GPS</small></span>
+      <svg class="fchev" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+  </div>
+
+  <!-- หมวดหมู่ยอดนิยม -->
+  <div class="cat-head reveal">
+    <span class="line"></span>
+    <h2>หมวดหมู่อาหารยอดนิยม</h2>
+    <svg class="crown" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 8l4.5 4L12 5l4.5 7L21 8l-2 10H5z" fill="#F4B740" stroke="#E0952B" stroke-width="1.2" stroke-linejoin="round"/></svg>
+    <span class="line"></span>
+  </div>
+  <!-- data-cat = ชื่อหมวดหมู่ในฐานข้อมูล (TBL_CATEGORY) ถ้าไม่มีหมวดนี้ ระบบจะแสดงร้านทั้งหมดแทน -->
+  <div class="cat-grid">
+    <button class="cat-tile reveal" data-cat="ญี่ปุ่น"><img src="img/cat-japanese.jpg" alt="" loading="lazy"><span class="cat-label">อาหารญี่ปุ่น<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button>
+    <button class="cat-tile reveal" data-cat="หมูกระทะ"><img src="img/cat-shabu.jpg" alt="" loading="lazy"><span class="cat-label">ชาบู / ปิ้งย่าง<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button>
+    <button class="cat-tile reveal" data-cat="อาหารเกาหลี"><img src="img/cat-korean.jpg" alt="" loading="lazy"><span class="cat-label">อาหารเกาหลี<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button>
+    <button class="cat-tile reveal" data-cat="อาหารตามสั่ง"><img src="img/cat-thai.jpg" alt="" loading="lazy"><span class="cat-label">อาหารไทย<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button>
+    <button class="cat-tile reveal" data-cat="คาเฟ่/ของหวาน"><img src="img/cat-cafe.jpg" alt="" loading="lazy"><span class="cat-label">คาเฟ่ / ของหวาน<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button>
+    <button class="cat-tile reveal" data-cat="เครื่องดื่ม"><img src="img/cat-drink.jpg" alt="" loading="lazy"><span class="cat-label">เครื่องดื่ม<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button>
+  </div>
+
+  <!-- แบนเนอร์ชวนค้นหา -->
+  <div class="banner reveal">
+    <img class="mascot" src="img/mascot.png" alt="" width="178" height="149" loading="lazy">
+    <p>พร้อมหรือยังที่จะเจอร้านโปรดร้านใหม่?</p>
+    <button class="cta-main" data-goto="browse">เริ่มค้นหาร้านอาหารเลย!
+      <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <svg class="banner-deco" viewBox="0 0 32 32" aria-hidden="true" fill="none" stroke="#F4A23A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4v6a4 4 0 0 0 8 0V4M9 4v24"/><ellipse cx="23" cy="10" rx="3.8" ry="6"/><path d="M23 16v12"/></svg>
+  </div>
+</section>
+
+<!-- ========== แท็บ 1: สุ่มร้าน ========== -->
+<section id="tab-random" class="tab-panel app-panel hidden">
+  <div class="reveal rounded-3xl p-6" style="background:var(--card);border:1px solid var(--border);box-shadow:0 4px 20px rgba(180,130,140,.08);">
+    <div class="grid grid-cols-2 gap-3 mb-5">
+      <div><label style="font-size:.8rem;color:var(--muted);display:block;margin-bottom:.3rem;">หมวดหมู่</label>
+        <select class="fsel" id="fCat"><option value="">ทุกหมวด</option></select></div>
+      <div><label style="font-size:.8rem;color:var(--muted);display:block;margin-bottom:.3rem;">งบประมาณ</label>
+        <select class="fsel" id="fBudget"><option value="9999">ไม่จำกัด</option><option value="100">ไม่เกิน 100 บาท</option><option value="200">ไม่เกิน 200 บาท</option><option value="500">ไม่เกิน 500 บาท</option></select></div>
+      <div><label style="font-size:.8rem;color:var(--muted);display:block;margin-bottom:.3rem;">ประเทศอาหาร</label>
+        <select class="fsel" id="fCountry"><option value="">ทุกประเทศ</option><option>ไทย</option><option>ญี่ปุ่น</option><option>จีน</option><option>ฮาลาล</option></select></div>
+      <div><label style="font-size:.8rem;color:var(--muted);display:block;margin-bottom:.3rem;">บรรยากาศ</label>
+        <select class="fsel" id="fAtmos"><option value="">ทั้งหมด</option><option>แอร์</option><option>พัดลม</option><option>ทั้งคู่</option></select></div>
+      <div class="col-span-2"><label style="font-size:.8rem;color:var(--muted);display:block;margin-bottom:.3rem;">ระยะทางไม่เกิน</label>
+        <select class="fsel" id="fDist"><option value="99999">ทุกระยะ</option><option value="500">ไม่เกิน 500 ม.</option><option value="1000">ไม่เกิน 1 กม.</option><option value="2000">ไม่เกิน 2 กม.</option><option value="3000">ไม่เกิน 3 กม.</option><option value="5000">ไม่เกิน 5 กม.</option><option value="10000">ไม่เกิน 10 กม.</option><option value="20000">ไม่เกิน 20 กม.</option></select></div>
+    </div>
+    <button class="btn-primary mb-4" id="randomBtn">สุ่มร้านเลย!</button>
+    <div id="randomResult" style="min-height:130px;border:2px dashed #F0D9DE;border-radius:14px;display:flex;align-items:center;justify-content:center;padding:1.2rem;transition:all .3s;">
+      <p style="color:#C4A8AD;font-size:.88rem;text-align:center;">กดปุ่มเพื่อสุ่มร้าน</p>
+    </div>
+  </div>
+</section>
+
+<!-- ========== แท็บ 2: เลือกเอง ========== -->
+<section id="tab-browse" class="tab-panel app-panel hidden">
+  <div class="near-card">
+    <div class="near-head">
+      <h2 class="near-title">ร้านใกล้ฉัน</h2>
+      <div class="near-sub">เรียงจากใกล้ไปไกล แยกตามหมวดอาหาร</div>
+    </div>
+
+    <!-- แถบค้นหา/กรอง: ลอยค้างด้านบนเวลาเลื่อนรายการ -->
+    <div class="near-bar" id="nearBar">
+      <div class="near-search">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M15 15l5.5 5.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+        <input id="nearSearch" type="search" placeholder="ค้นหาชื่อร้าน" aria-label="ค้นหาชื่อร้าน" autocomplete="off">
+      </div>
+      <div class="chips-wrap" id="chipsWrap">
+        <button class="chip-arrow left is-hidden" id="chipsLeft" type="button" aria-label="เลื่อนหมวดไปทางซ้าย"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="near-chips" id="browseChips"></div>
+        <button class="chip-arrow right is-hidden" id="chipsRight" type="button" aria-label="เลื่อนหมวดไปทางขวา"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      </div>
+
+    </div>
+
+    <div class="near-tools">
+      <div class="near-filters" role="group" aria-label="ตัวกรอง">
+        <button class="fpill" data-dist="0" type="button">ทุกระยะ</button>
+        <button class="fpill" data-dist="500" type="button">≤ 500 ม.</button>
+        <button class="fpill" data-dist="1000" type="button">≤ 1 กม.</button>
+        <button class="fpill" data-dist="2000" type="button">≤ 2 กม.</button>
+        <button class="fpill" data-dist="5000" type="button">≤ 5 กม.</button>
+        <button class="fpill" data-dist="10000" type="button">≤ 10 กม.</button>
+        <span class="fsep"></span>
+        <button class="fpill" id="nearOpen" type="button" aria-pressed="false">เปิดอยู่ตอนนี้</button>
+      </div>
+      <div class="near-count-row">
+      <div class="near-count"><b id="nearCount"></b><span id="status"></span></div>
+        <select class="fpill-sel" id="nearSort" aria-label="เรียงตาม">
+          <option value="dist">ใกล้สุดก่อน</option>
+          <option value="price">ราคาถูกสุดก่อน</option>
+          <option value="name">ชื่อ ก-ฮ</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="space-y-3" id="browseList"></div>
+    <button class="btn-ghost near-more is-hidden" id="nearMore" type="button">ดูร้านเพิ่ม</button>
+    <p class="text-center mt-3" style="font-size:.75rem;color:var(--muted);">เขียว ≤500 ม. / ส้ม ≤1 กม. / เทา ไกลกว่า</p>
+  </div>
+</section>
+<button class="to-top is-hidden" id="toTop" type="button" aria-label="กลับขึ้นบนสุด">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V6M6 12l6-6 6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</button>
+
+<!-- ========== แท็บ 3: โหวตทีม ========== -->
+<section id="tab-vote" class="tab-panel app-panel hidden locked">
+  <div class="login-gate auth-card">
+    <h3 style="font-weight:700;font-size:1.1rem;margin-bottom:.4rem;">เข้าสู่ระบบก่อนโหวตกับเพื่อน</h3>
+    <p style="font-size:.85rem;color:var(--muted);margin-bottom:1rem;">ต้องล็อกอินเพื่อให้รู้ว่าใครเป็นหัวห้องและใครเข้าร่วมโหวต</p>
+    <button class="btn-primary" data-goto="login" type="button">สมัครสมาชิก / เข้าสู่ระบบ</button>
+  </div>
+  <!-- ห้องล็อบบี้ (สร้าง/เข้าร่วม) -->
+  <div class="reveal rounded-3xl p-6" style="background:var(--card);border:1px solid var(--border);box-shadow:0 4px 20px rgba(180,130,140,.08);" id="voteLobby">
+    <h3 style="font-weight:700;font-size:1.1rem;margin-bottom:1rem;text-align:center;">สร้างหรือเข้าร่วมกลุ่มโหวต</h3>
+    <button class="btn-primary mb-3" id="openPickerBtn">สร้างกลุ่มโหวตใหม่</button>
+    <div style="text-align:center;color:var(--muted);font-size:.8rem;margin:.5rem 0;">— หรือเข้าร่วมด้วยโค้ด —</div>
+    <div class="flex gap-2 mt-2">
+      <input class="finput" id="joinCode" placeholder="ใส่โค้ด 4 ตัว เช่น KR7X" maxlength="4" style="text-transform:uppercase;letter-spacing:2px;text-align:center;">
+      <button class="btn-ghost" id="joinGroupBtn" style="flex-shrink:0;">เข้าร่วม</button>
+    </div>
+    <!-- ประวัติห้องที่สร้าง -->
+    <div id="voteHistoryWrap" class="hidden mt-4 pt-4" style="border-top:1px solid var(--border);">
+      <div style="font-size:.82rem;font-weight:600;color:var(--accent-deep);margin-bottom:.5rem;">ห้องของฉัน</div>
+      <div class="space-y-2" id="voteHistory"></div>
+    </div>
+  </div>
+  <!-- เลือกร้านสำหรับห้องโหวต (คนสร้างห้องเลือกเอง) -->
+  <div class="reveal rounded-3xl p-6 hidden" style="background:var(--card);border:1px solid var(--border);box-shadow:0 4px 20px rgba(180,130,140,.08);" id="votePicker">
+    <h3 style="font-weight:700;font-size:1.1rem;margin-bottom:.25rem;">เลือกร้านให้เพื่อนโหวต</h3>
+    <p style="font-size:.78rem;color:var(--muted);margin-bottom:.9rem;">เลือกกี่ร้านก็ได้ (อย่างน้อย 2 ร้าน) เพื่อนที่เข้าห้องจะเลือกโหวตได้เฉพาะร้านเหล่านี้</p>
+    <div class="flex gap-2 mb-2">
+      <input class="finput" id="pickSearch" placeholder="ค้นหาชื่อร้าน">
+      <select class="fsel" id="pickCat" style="width:auto;max-width:45%;"><option value="">ทุกหมวด</option></select>
+    </div>
+    <div class="flex justify-between items-center mb-2" style="font-size:.8rem;color:var(--muted);">
+      <span>เลือกแล้ว <b id="pickCount" style="color:var(--accent-deep);">0</b> ร้าน</span>
+      <span><button type="button" class="pick-link" id="pickAll">เลือกทั้งหมดที่แสดง</button> · <button type="button" class="pick-link" id="pickClear">ล้างที่เลือก</button></span>
+    </div>
+    <div id="pickList" class="pick-list"></div>
+    <div class="flex gap-2 mt-4">
+      <button class="btn-ghost flex-1" id="pickCancel">ยกเลิก</button>
+      <button class="btn-primary flex-1" id="pickCreate" style="padding:.7rem;font-size:.9rem;" disabled>สร้างห้องโหวต</button>
+    </div>
+  </div>
+  <!-- ห้องโหวต (ภายใน) -->
+  <div class="reveal rounded-3xl p-6 hidden" style="background:var(--card);border:1px solid var(--border);box-shadow:0 4px 20px rgba(180,130,140,.08);" id="voteRoom">
+    <div class="flex justify-between items-center mb-1">
+      <h3 style="font-weight:700;font-size:1.05rem;margin:0;">ห้องโหวต</h3>
+      <span id="roomCode" style="background:var(--accent);color:#fff;padding:.25rem .8rem;border-radius:8px;font-weight:700;letter-spacing:3px;font-size:.95rem;"></span>
+    </div>
+    <div class="room-role" id="roomRole"></div>
+    <div id="announceResult" class="hidden mt-3 mb-3 rounded-2xl p-4 text-center" style="background:var(--accent-soft);border:1px solid var(--accent);"></div>
+    <p style="font-size:.78rem;color:var(--muted);margin:.4rem 0 .9rem;">แชร์โค้ดให้เพื่อน · 1 คนโหวตได้ 1 ร้าน · ก่อนเฉลยจะไม่เห็นว่าใครโหวตร้านไหน</p>
+    <div class="room-progress">
+      <div class="rp-text"><span id="rpText"></span></div>
+      <div class="rp-bar"><i id="rpBar"></i></div>
+    </div>
+    <div class="member-list" id="roomMembers" aria-label="สมาชิกในห้อง"></div>
+    <div class="section-label" id="optLabel">เลือกร้านที่อยากกิน</div>
+    <div class="space-y-2 mb-4" id="voteOptions"></div>
+    <div id="myVote" class="my-vote is-hidden"></div>
+    <div id="voteChart" class="space-y-2 mb-4 hidden"></div>
+    <div class="flex gap-2">
+      <button class="btn-ghost flex-1" id="leaveRoomBtn">ออกจากห้อง</button>
+      <button class="btn-primary flex-1" id="announceBtn" style="padding:.7rem;font-size:.9rem;">เฉลยผล</button>
+    </div>
+    <p class="announce-hint" id="announceHint"></p>
+  </div>
+</section>
+
+<!-- ========== เข้าสู่ระบบ / สมัครสมาชิก ========== -->
+<section id="tab-login" class="tab-panel app-panel hidden">
+  <div class="auth-card">
+    <div class="seg" role="tablist" aria-label="เข้าสู่ระบบหรือสมัครสมาชิก">
+      <button class="seg-btn active" id="segRegister" role="tab" aria-selected="true" type="button">สมัครสมาชิก</button>
+      <button class="seg-btn" id="segLogin" role="tab" aria-selected="false" type="button">เข้าสู่ระบบ</button>
+    </div>
+    <form id="authForm" novalidate>
+      <div class="afield"><label for="auUser">ชื่อผู้ใช้</label><input class="finput" id="auUser" autocomplete="username" autocapitalize="off" spellcheck="false"></div>
+      <div class="afield reg-only"><label for="auDisplay">ชื่อที่แสดง <small>(ไม่ใส่ก็ได้)</small></label><input class="finput" id="auDisplay" maxlength="40" autocomplete="nickname"></div>
+      <div class="afield"><label for="auPass">รหัสผ่าน</label><input class="finput" id="auPass" type="password" autocomplete="current-password"></div>
+      <div class="afield reg-only"><label for="auPass2">ยืนยันรหัสผ่าน</label><input class="finput" id="auPass2" type="password" autocomplete="new-password"></div>
+      <p class="auth-hint reg-only">ชื่อผู้ใช้ใช้ A-Z, 0-9 และ _ ยาว 3-20 ตัว · รหัสผ่านอย่างน้อย 6 ตัว</p>
+      <p class="auth-msg" id="authMsg" role="alert"></p>
+      <button class="btn-primary" id="authSubmit" type="submit">สมัครสมาชิก</button>
+      <p class="auth-switch" id="authSwitch"></p>
+    </form>
+  </div>
+</section>
+
+<!-- ========== แท็บ 4: เพิ่มร้าน ========== -->
+<section id="tab-add" class="tab-panel app-panel hidden locked">
+  <div class="login-gate auth-card">
+    <h3 style="font-weight:700;font-size:1.1rem;margin-bottom:.4rem;">เข้าสู่ระบบก่อนเพิ่มร้าน</h3>
+    <p style="font-size:.85rem;color:var(--muted);margin-bottom:1rem;">สมาชิกเพิ่มร้านได้ แอดมินจะตรวจสอบก่อนแสดงผล</p>
+    <button class="btn-primary" data-goto="login" type="button">สมัครสมาชิก / เข้าสู่ระบบ</button>
+  </div>
+  <div class="reveal rounded-3xl p-6" style="background:var(--card);border:1px solid var(--border);box-shadow:0 4px 20px rgba(180,130,140,.08);">
+    <h3 style="font-weight:700;font-size:1.1rem;margin-bottom:1rem;">เพิ่มร้านอาหาร</h3>
+    <p style="font-size:.78rem;color:var(--muted);margin-bottom:1rem;">ร้านที่เพิ่มจะอยู่ในสถานะ "รออนุมัติ" แอดมินจะตรวจสอบและอนุมัติให้แสดงผล</p>
+    <div class="grid grid-cols-2 gap-3">
+      <div class="col-span-2"><label style="font-size:.8rem;color:var(--muted);">ชื่อร้าน</label><input class="finput" id="aName" placeholder="ชื่อร้านอาหาร"></div>
+      <div><label style="font-size:.8rem;color:var(--muted);">หมวดหมู่</label><select class="fsel" id="aCat"></select></div>
+      <div><label style="font-size:.8rem;color:var(--muted);">ประเทศอาหาร</label><select class="fsel" id="aCountry"><option>ไทย</option><option>ญี่ปุ่น</option><option>จีน</option><option>ฮาลาล</option><option>อื่นๆ</option></select></div>
+      <div><label style="font-size:.8rem;color:var(--muted);">บรรยากาศ</label><select class="fsel" id="aAtmos"><option>แอร์</option><option>พัดลม</option><option>ทั้งคู่</option></select></div>
+      <div><label style="font-size:.8rem;color:var(--muted);">งบประมาณสูงสุด (บาท)</label><input class="finput" id="aBudget" type="number" placeholder="เช่น 150"></div>
+      <div class="col-span-2"><label style="font-size:.8rem;color:var(--muted);">ที่อยู่</label><input class="finput" id="aAddr" placeholder="ที่อยู่ร้าน"></div>
+      <div><label style="font-size:.8rem;color:var(--muted);">เบอร์โทรศัพท์</label><input class="finput" id="aPhone" type="tel" placeholder="0xx-xxx-xxxx"></div>
+      <div><label style="font-size:.8rem;color:var(--muted);">Social Media</label><input class="finput" id="aSocial" placeholder="FB / IG / Line"></div>
+      <div class="col-span-2"><label style="font-size:.8rem;color:var(--muted);display:block;margin-bottom:.3rem;">ลิงค์ Google Maps (วางจากแอปหรือเบราว์เซอร์ ระบบดึงพิกัดเอง)</label>
+        <input class="finput" id="aMap" placeholder="https://maps.google.com/... หรือ https://goo.gl/maps/..."></div>
+      <div><label style="font-size:.8rem;color:var(--muted);">เวลาเปิด</label><input class="finput" id="aOpen" type="time" value="08:00"></div>
+      <div><label style="font-size:.8rem;color:var(--muted);">เวลาปิด</label><input class="finput" id="aClose" type="time" value="20:00"></div>
+      <div class="col-span-2"><label style="font-size:.8rem;color:var(--muted);display:block;margin-bottom:.3rem;">วันหยุดประจำ (กดเลือกได้หลายวัน กดซ้ำเพื่อยกเลิก)</label>
+        <div class="flex flex-wrap gap-1.5" id="aClosedChips"></div></div>
+    </div>
+    <button class="btn-primary mt-4" id="submitAddBtn">ส่งร้านเพื่ออนุมัติ</button>
+  </div>
+</section>
+
+<!-- ========== แท็บ 5: จัดการ (แอดมิน) ========== -->
+<section id="tab-admin" class="tab-panel app-panel hidden">
+  <!-- แจ้งสิทธิ์ (แสดงเมื่อไม่ใช่แอดมิน) -->
+  <div class="auth-card" id="adminLogin">
+    <h3 style="font-weight:700;font-size:1.1rem;margin-bottom:.4rem;">หน้านี้สำหรับแอดมิน</h3>
+    <p style="font-size:.85rem;color:var(--muted);margin-bottom:1rem;" id="adminGateMsg">เข้าสู่ระบบด้วยบัญชีแอดมินเพื่อจัดการร้านและสมาชิก</p>
+    <button class="btn-primary" data-goto="login" type="button" id="adminGateBtn">เข้าสู่ระบบ</button>
+  </div>
+  <!-- แผงควบคุม -->
+  <div class="reveal rounded-3xl p-6 hidden" style="background:var(--card);border:1px solid var(--border);box-shadow:0 4px 20px rgba(180,130,140,.08);" id="adminPanel">
+    <div class="flex justify-between items-center mb-4">
+      <h3 style="font-weight:700;font-size:1.1rem;margin:0;">แผงควบคุมแอดมิน</h3>
+      <button class="btn-ghost" id="adminLogoutBtn" style="font-size:.78rem;padding:.35rem .8rem;">ออกจากระบบ</button>
+    </div>
+    <div style="font-size:.85rem;font-weight:600;color:var(--accent-deep);margin-bottom:.5rem;">ร้านรออนุมัติ</div>
+    <div class="space-y-2 mb-5" id="pendingList"></div>
+    <div style="font-size:.85rem;font-weight:600;color:var(--accent-deep);margin-bottom:.5rem;">จัดการหมวดหมู่</div>
+    <div class="flex gap-2 mb-2"><input class="finput" id="newCat" placeholder="หมวดหมู่ใหม่"><button class="btn-ghost" id="addCatBtn" style="flex-shrink:0;">เพิ่ม</button></div>
+    <div class="flex flex-wrap gap-2 mb-5" id="catList"></div>
+    <div style="font-size:.85rem;font-weight:600;color:var(--accent-deep);margin-bottom:.2rem;">จัดการสมาชิกและสิทธิ์</div>
+    <p style="font-size:.75rem;color:var(--muted);margin-bottom:.5rem;">ตั้งสมาชิกเป็นแอดมินเพื่อให้จัดการร้านและสมาชิกได้</p>
+    <div class="space-y-2" id="userList"></div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <span class="brand-sm">
+    <svg viewBox="0 0 32 32" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4v6a4 4 0 0 0 8 0V4M9 4v24"/><ellipse cx="23" cy="10" rx="3.8" ry="6"/><path d="M23 16v12"/></svg>
+    KINRAIDEE
+  </span>
+  <span class="sep"></span>
+  <span>Find Your Food, Find Your Mood ♡</span>
+</footer>
+
+<!-- กล่องแจ้งเตือน -->
+<div id="toast" class="toast"></div>
+
+<!-- JavaScript (แยกไฟล์) -->
+<script src="script.js?v=20261109c"></script>
+<!-- ระบบนำทางหน้าแรก (ต้องโหลดหลัง script.js) -->
+<script src="home.js?v=20261109c"></script>
+<script src="vote_picker.js?v=20261109c"></script>
+<script src="vote_room.js?v=20261109c"></script>
+<script src="near.js?v=20261109c"></script>
+<script src="auth.js?v=20261109c"></script>
+<script src="random_fix.js?v=20261109c"></script>
+<script src="sound.js?v=20261109c"></script>
+<script src="theme.js?v=20261109c"></script>
+</body>
+</html>
